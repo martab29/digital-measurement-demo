@@ -1,16 +1,20 @@
 // Get the current cart from the browser.
 // If no cart exists yet, create an empty array.
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function updateCartCount() {
+  const cartCount = document.getElementById("cart-count");
 
+  if (cartCount) {
+    cartCount.textContent = cart.length;
+  }
+}
 
 // ADD PRODUCT TO CART
 function addToCart(product) {
-
   cart.push(product);
-
   localStorage.setItem("cart", JSON.stringify(cart));
-
-  alert(product.name + " was added to your cart.");
+  updateCartCount();
+  alert("Product added to cart.");
 }
 
 
@@ -20,6 +24,7 @@ function removeFromCart(index) {
   cart.splice(index, 1);
 
   localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
 
   displayCart();
 }
@@ -193,3 +198,4 @@ function displayPurchase() {
 displayCart();
 displayCheckout();
 displayPurchase();
+updateCartCount();
