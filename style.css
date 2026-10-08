@@ -149,3 +149,69 @@ footer {
     font-size: 26px;
   }
 }
+
+/* PRODUCT GRID */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  background: transparent;
+  padding: 0;
+}
+
+.product-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.product-image {
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-image {
+  background: #e8e5df;
+  color: #777;
+  font-size: 14px;
+}
+
+.product-info {
+  padding: 25px;
+}
+
+.product-info h3 {
+  font-size: 21px;
+  margin-top: 0;
+}
+
+.product-info p {
+  color: #555;
+}
+
+.product-info .price {
+  color: #222;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+
+/* RESPONSIVE PRODUCT GRID */
+
+@media (max-width: 850px) {
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-image {
+    height: 220px;
+  }
+
+}
