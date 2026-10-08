@@ -15,6 +15,19 @@ function addToCart(product) {
 }
 
 
+// Remove a product from the cart.
+function removeFromCart(index) {
+
+  cart.splice(index, 1);
+
+  // Save the updated cart.
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // Refresh the cart displayed on the page.
+  displayCart();
+}
+
+
 // Display the cart on cart.html.
 function displayCart() {
 
@@ -37,7 +50,7 @@ function displayCart() {
 
   let total = 0;
 
-  cart.forEach(function(product) {
+  cart.forEach(function(product, index) {
 
     const productElement = document.createElement("div");
 
@@ -45,6 +58,9 @@ function displayCart() {
       <h3>${product.name}</h3>
       <p>Variant: ${product.variant}</p>
       <p>€${product.price.toFixed(2)}</p>
+      <button type="button" onclick="removeFromCart(${index})">
+        Remove
+      </button>
     `;
 
     cartContainer.appendChild(productElement);
