@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Demo Store</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Demo Store</h1>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <h2>Checkout</h2>
+
+    <section>
+      <h3>Order summary</h3>
+
+      <div id="checkout-items"></div>
+
+      <p>
+        <strong>Total: €<span id="checkout-total">0.00</span></strong>
+      </p>
+    </section>
+
+    <section>
+
+      <h3>Customer details</h3>
+
+      <form id="checkout-form">
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" required>
+
+        <br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" required>
+
+        <br><br>
+
+        <label for="country">Country:</label><br>
+        <select id="country" required>
+          <option value="PT">Portugal</option>
+          <option value="ES">Spain</option>
+          <option value="FR">France</option>
+          <option value="UK">United Kingdom</option>
+        </select>
+
+        <br><br>
+
+        <label for="payment">Payment method:</label><br>
+        <select id="payment" required>
+          <option value="card">Credit card</option>
+          <option value="paypal">PayPal</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Place order</button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Demo Store — Digital Measurement Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
