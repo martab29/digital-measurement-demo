@@ -42,7 +42,7 @@
 
       <br><br>
 
-      <button type="button">Add to cart</button>
+      <button id="add-to-cart" type="button">Add to cart</button>
 
     </section>
 
@@ -52,5 +52,26 @@
     <p>Demo Store — Digital Measurement Project</p>
   </footer>
 
+<script src="script.js"></script>
+
+<script>
+  const addToCartButton = document.getElementById("add-to-cart");
+
+  addToCartButton.addEventListener("click", function() {
+
+    const selectedFinish = document.getElementById("finish").value;
+
+    const product = {
+      id: "TABLE001",
+      name: "Oak Side Table",
+      price: 129.00,
+      variant: selectedFinish
+    };
+
+    addToCart(product);
+
+  });
+</script>
+  
 </body>
 </html>
