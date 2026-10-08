@@ -43,7 +43,7 @@
 
       <br><br>
 
-      <button type="button">Add to cart</button>
+      <button id="add-to-cart" type="button">Add to cart</button>
 
       <h3>Not sure about the colour?</h3>
 
@@ -60,6 +60,28 @@
   <footer>
     <p>Demo Store — Digital Measurement Project</p>
   </footer>
+
+
+  <script src="script.js"></script>
+
+<script>
+  const addToCartButton = document.getElementById("add-to-cart");
+
+  addToCartButton.addEventListener("click", function() {
+
+    const selectedColor = document.getElementById("color").value;
+
+    const product = {
+      id: "CHAIR001",
+      name: "Nordic Lounge Chair",
+      price: 249.00,
+      variant: selectedColor
+    };
+
+    addToCart(product);
+
+  });
+</script>
 
 </body>
 </html>
