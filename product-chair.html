@@ -47,11 +47,48 @@
 
       <h3>Not sure about the colour?</h3>
 
-      <p>
-        Request a free fabric sample before placing your order.
-      </p>
+<p>
+  Request a free fabric sample before placing your order.
+</p>
 
-      <button type="button">Request a sample</button>
+<button id="sample-button" type="button">Request a sample</button>
+
+<div id="sample-form-container" style="display: none;">
+
+  <h3>Request your free sample</h3>
+
+  <p>
+    Selected colour:
+    <strong id="sample-selected-variant"></strong>
+  </p>
+
+  <form id="sample-form">
+
+    <label for="sample-name">Name:</label><br>
+    <input type="text" id="sample-name" required>
+
+    <br><br>
+
+    <label for="sample-email">Email:</label><br>
+    <input type="email" id="sample-email" required>
+
+    <br><br>
+
+    <button type="submit">Submit sample request</button>
+
+  </form>
+
+</div>
+
+<div id="sample-confirmation" style="display: none;">
+
+  <h3>Sample requested</h3>
+
+  <p>
+    Your free fabric sample request has been submitted successfully.
+  </p>
+
+</div>
 
     </section>
 
@@ -82,6 +119,39 @@
 
   });
 </script>
+  <script>
+
+  const sampleButton = document.getElementById("sample-button");
+  const sampleFormContainer = document.getElementById("sample-form-container");
+  const sampleForm = document.getElementById("sample-form");
+  const sampleConfirmation = document.getElementById("sample-confirmation");
+  const sampleSelectedVariant = document.getElementById("sample-selected-variant");
+
+
+  // Open the sample request form.
+  sampleButton.addEventListener("click", function() {
+
+    const selectedColor = document.getElementById("color").value;
+
+    sampleSelectedVariant.textContent = selectedColor;
+
+    sampleFormContainer.style.display = "block";
+
+  });
+
+
+  // Submit the sample request.
+  sampleForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    sampleFormContainer.style.display = "none";
+    sampleConfirmation.style.display = "block";
+
+  });
+
+</script>
+  
 
 </body>
 </html>
