@@ -74,3 +74,366 @@ function displayCart() {
 
 // Run displayCart when the page loads.
 displayCart();
+// Display the order summary on checkout.html.
+function displayCheckout() {
+
+  const checkoutContainer = document.getElementById("checkout-items");
+  const checkoutTotal = document.getElementById("checkout-total");
+
+  if (!checkoutContainer || !checkoutTotal) {
+    return;
+  }
+
+  // Do not allow checkout with an empty cart.
+  if (cart.length === 0) {
+    checkoutContainer.innerHTML = "<p>Your cart is empty.</p>";
+    checkoutTotal.textContent = "0.00";
+
+    const form = document.getElementById("checkout-form");
+
+    if (form) {
+      form.style.display = "none";
+    }
+
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach(function(product) {
+
+    const productElement = document.createElement("div");
+
+    productElement.innerHTML = `
+      <p>
+        ${product.name} (${product.variant}) — €${product.price.toFixed(2)}
+      </p>
+    `;
+
+    checkoutContainer.appendChild(productElement);
+
+    total += product.price;
+  });
+
+  checkoutTotal.textContent = total.toFixed(2);
+}
+
+
+// Complete the order.
+const checkoutForm = document.getElementById("checkout-form");
+
+if (checkoutForm) {
+
+  checkoutForm.addEventListener("submit", function(event) {
+
+    // Prevent the browser from submitting the form normally.
+    event.preventDefault();
+
+    const total = cart.reduce(function(sum, product) {
+      return sum + product.price;
+    }, 0);
+
+    // Create a simple unique transaction ID for this demo.
+    const order = {
+      transactionId: "ORDER-" + Date.now(),
+      items: cart,
+      total: total
+    };
+
+    // Save the completed order so purchase.html can access it.
+    localStorage.setItem("lastOrder", JSON.stringify(order));
+
+    // Empty the cart after the purchase.
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Go to the confirmation page.
+    window.location.href = "purchase.html";
+
+  });
+
+}
+
+
+// Display the completed order on purchase.html.
+function displayPurchase() {
+
+  const orderIdElement = document.getElementById("order-id");
+  const purchaseContainer = document.getElementById("purchase-items");
+  const purchaseTotal = document.getElementById("purchase-total");
+
+  if (!orderIdElement || !purchaseContainer || !purchaseTotal) {
+    return;
+  }
+
+  const order = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (!order) {
+    purchaseContainer.innerHTML = "<p>No recent order found.</p>";
+    return;
+  }
+
+  orderIdElement.textContent = order.transactionId;
+
+  order.items.forEach(function(product) {
+
+    const productElement = document.createElement("div");
+
+    productElement.innerHTML = `
+      <p>
+        ${product.name} (${product.variant}) — €${product.price.toFixed(2)}
+      </p>
+    `;
+
+    purchaseContainer.appendChild(productElement);
+
+  });
+
+  purchaseTotal.textContent = order.total.toFixed(2);
+}
+
+
+displayCheckout();
+// Display the order summary on checkout.html.
+function displayCheckout() {
+
+  const checkoutContainer = document.getElementById("checkout-items");
+  const checkoutTotal = document.getElementById("checkout-total");
+
+  if (!checkoutContainer || !checkoutTotal) {
+    return;
+  }
+
+  // Do not allow checkout with an empty cart.
+  if (cart.length === 0) {
+    checkoutContainer.innerHTML = "<p>Your cart is empty.</p>";
+    checkoutTotal.textContent = "0.00";
+
+    const form = document.getElementById("checkout-form");
+
+    if (form) {
+      form.style.display = "none";
+    }
+
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach(function(product) {
+
+    const productElement = document.createElement("div");
+
+    productElement.innerHTML = `
+      <p>
+        ${product.name} (${product.variant}) — €${product.price.toFixed(2)}
+      </p>
+    `;
+
+    checkoutContainer.appendChild(productElement);
+
+    total += product.price;
+  });
+
+  checkoutTotal.textContent = total.toFixed(2);
+}
+
+
+// Complete the order.
+const checkoutForm = document.getElementById("checkout-form");
+
+if (checkoutForm) {
+
+  checkoutForm.addEventListener("submit", function(event) {
+
+    // Prevent the browser from submitting the form normally.
+    event.preventDefault();
+
+    const total = cart.reduce(function(sum, product) {
+      return sum + product.price;
+    }, 0);
+
+    // Create a simple unique transaction ID for this demo.
+    const order = {
+      transactionId: "ORDER-" + Date.now(),
+      items: cart,
+      total: total
+    };
+
+    // Save the completed order so purchase.html can access it.
+    localStorage.setItem("lastOrder", JSON.stringify(order));
+
+    // Empty the cart after the purchase.
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Go to the confirmation page.
+    window.location.href = "purchase.html";
+
+  });
+
+}
+
+
+// Display the completed order on purchase.html.
+function displayPurchase() {
+
+  const orderIdElement = document.getElementById("order-id");
+  const purchaseContainer = document.getElementById("purchase-items");
+  const purchaseTotal = document.getElementById("purchase-total");
+
+  if (!orderIdElement || !purchaseContainer || !purchaseTotal) {
+    return;
+  }
+
+  const order = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (!order) {
+    purchaseContainer.innerHTML = "<p>No recent order found.</p>";
+    return;
+  }
+
+  orderIdElement.textContent = order.transactionId;
+
+  order.items.forEach(function(product) {
+
+    const productElement = document.createElement("div");
+
+    productElement.innerHTML = `
+      <p>
+        ${product.name} (${product.variant}) — €${product.price.toFixed(2)}
+      </p>
+    `;
+
+    purchaseContainer.appendChild(productElement);
+
+  });
+
+  purchaseTotal.textContent = order.total.toFixed(2);
+}
+
+
+displayCheckout();
+
+
+// Display the order summary on checkout.html.
+function displayCheckout() {
+
+  const checkoutContainer = document.getElementById("checkout-items");
+  const checkoutTotal = document.getElementById("checkout-total");
+
+  if (!checkoutContainer || !checkoutTotal) {
+    return;
+  }
+
+  // Do not allow checkout with an empty cart.
+  if (cart.length === 0) {
+    checkoutContainer.innerHTML = "<p>Your cart is empty.</p>";
+    checkoutTotal.textContent = "0.00";
+
+    const form = document.getElementById("checkout-form");
+
+    if (form) {
+      form.style.display = "none";
+    }
+
+    return;
+  }
+
+  let total = 0;
+
+  cart.forEach(function(product) {
+
+    const productElement = document.createElement("div");
+
+    productElement.innerHTML = `
+      <p>
+        ${product.name} (${product.variant}) — €${product.price.toFixed(2)}
+      </p>
+    `;
+
+    checkoutContainer.appendChild(productElement);
+
+    total += product.price;
+  });
+
+  checkoutTotal.textContent = total.toFixed(2);
+}
+
+
+// Complete the order.
+const checkoutForm = document.getElementById("checkout-form");
+
+if (checkoutForm) {
+
+  checkoutForm.addEventListener("submit", function(event) {
+
+    // Prevent the browser from submitting the form normally.
+    event.preventDefault();
+
+    const total = cart.reduce(function(sum, product) {
+      return sum + product.price;
+    }, 0);
+
+    // Create a simple unique transaction ID for this demo.
+    const order = {
+      transactionId: "ORDER-" + Date.now(),
+      items: cart,
+      total: total
+    };
+
+    // Save the completed order so purchase.html can access it.
+    localStorage.setItem("lastOrder", JSON.stringify(order));
+
+    // Empty the cart after the purchase.
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Go to the confirmation page.
+    window.location.href = "purchase.html";
+
+  });
+
+}
+
+
+// Display the completed order on purchase.html.
+function displayPurchase() {
+
+  const orderIdElement = document.getElementById("order-id");
+  const purchaseContainer = document.getElementById("purchase-items");
+  const purchaseTotal = document.getElementById("purchase-total");
+
+  if (!orderIdElement || !purchaseContainer || !purchaseTotal) {
+    return;
+  }
+
+  const order = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (!order) {
+    purchaseContainer.innerHTML = "<p>No recent order found.</p>";
+    return;
+  }
+
+  orderIdElement.textContent = order.transactionId;
+
+  order.items.forEach(function(product) {
+
+    const productElement = document.createElement("div");
+
+    productElement.innerHTML = `
+      <p>
+        ${product.name} (${product.variant}) — €${product.price.toFixed(2)}
+      </p>
+    `;
+
+    purchaseContainer.appendChild(productElement);
+
+  });
+
+  purchaseTotal.textContent = order.total.toFixed(2);
+}
+
+
+displayCheckout();
+displayPurchase();
